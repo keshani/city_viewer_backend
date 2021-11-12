@@ -1,5 +1,6 @@
 package com.citybuilder.cityviewer.common.document;
 
+import com.citybuilder.cityviewer.common.document.models.ImageFile;
 import org.springframework.stereotype.Repository;
 
 import java.nio.file.Files;

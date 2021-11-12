@@ -1,11 +1,10 @@
 package com.citybuilder.cityviewer.common.document;
 
+import com.citybuilder.cityviewer.common.document.models.ImageFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @Service
 public class FileSystemServiceImpl implements FileSystemService{

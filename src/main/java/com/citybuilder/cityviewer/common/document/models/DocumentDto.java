@@ -1,4 +1,4 @@
-package com.citybuilder.cityviewer.common.document;
+package com.citybuilder.cityviewer.common.document.models;
 
 import lombok.Getter;
 import lombok.Setter;
