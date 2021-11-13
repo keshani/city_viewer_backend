@@ -23,11 +23,12 @@ public class CityViewController extends BaseConroller {
     public ResponseEntity fetchCityList(CityDto cityDto) {
         Page<City> cityList = cityViewService.getListOfCityBySearchCriteria(cityDto);
         return ResponseEntity.ok().body(cityList);
-
     }
+
     @PutMapping("/updateCityInfo")
-    public ResponseEntity<List<City>> updateCityInfo() {
-        return ResponseEntity.ok().body(Collections.singletonList(new City(1L,"Tokiyo","Nice Country",0F,0F, "Japan" )));
+    public ResponseEntity updateCityInfo(@RequestBody CityDto cityDto) {
+        cityViewService.updateCityInfo(cityDto);
+        return ResponseEntity.ok().body("Successs");
 
     }
     @PutMapping("/uploadCityImages")

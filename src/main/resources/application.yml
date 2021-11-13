@@ -11,8 +11,13 @@ spring:
     password: keshani
     driverClassName: org.h2.Driver
   jpa:
+    show-sql: true
     database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
       ddl-auto: update
+      format-sql: true
   h2:
     console.enabled: true
+app:
+  cityImagePath: /static/cityImages/
+  cityImageUrl: http://localhost:9092/cityImages/

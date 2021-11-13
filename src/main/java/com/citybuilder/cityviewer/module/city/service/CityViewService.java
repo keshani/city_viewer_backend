@@ -9,4 +9,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CityViewService {
     Page<City> getListOfCityBySearchCriteria(CityDto cityDto);
+    Boolean updateCityInfo(CityDto cityDto);
 }

@@ -1,11 +1,10 @@
 package com.citybuilder.cityviewer.module.city.models;
 
+import com.citybuilder.cityviewer.common.document.models.CityDocument;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import java.util.List;
 
 @Setter
 @Getter
@@ -18,4 +17,5 @@ public class CityDto {
    private Float longitude;
    private int pageSize;
    private int pageNumber;
+   private List<CityDocument> cityImages;
 }

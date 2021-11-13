@@ -1,14 +1,13 @@
 package com.citybuilder.cityviewer.module.city.models;
 
+import com.citybuilder.cityviewer.common.document.models.CityDocument;
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.Id;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -29,6 +28,8 @@ public class City implements Serializable {
     private Float latitude;
     @Column(name = "LONGITUDE")
     private Float longitude;
+    @Transient
+    private List<CityDocument> cityImages;
 
 
     public City() {
