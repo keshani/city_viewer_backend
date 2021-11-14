@@ -13,7 +13,7 @@ public interface CityViewRepository extends JpaRepository<City,Long> {
     Page<City> findByCityName(String cityName, Pageable pageable);
     @Query(value = "SELECT city"
             + " FROM City city"
-            + " WHERE city.cityName = :cityName ")
+            + " WHERE :cityName = NULL OR city.cityName = :cityName ")
     Page<City> findBySearchCriteria(@Param("cityName") String cityName, Pageable pageable);
 
 }

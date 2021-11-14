@@ -13,12 +13,17 @@ import org.springframework.stereotype.Service;
 import java.io.BufferedInputStream;
 import java.net.URL;
 import java.nio.file.Files;
+import java.util.Date;
 
 @Service
 public class FileSystemServiceImpl implements FileSystemService {
 
-    @Value("${app.cityImageUrl}")
-    private String FILE_URL;
+    @Value("${app.cityImagePath}")
+    private String FILE_LOCATION;
+
+    private String RESOURCES_DIR =  FileSystemRepository.class.getResource("/")
+            .getPath();
+
     @Autowired
     FileSystemRepository fileRepository;
 
@@ -26,31 +31,16 @@ public class FileSystemServiceImpl implements FileSystemService {
     DocumentRepository documentRepository;
 
     @Override
-    public void updateCityDocument(DocumentDto documentDto) throws Exception {
-        documentDto.setName(documentDto.getUploadFile().getOriginalFilename());
-        documentDto.setContent(documentDto.getUploadFile().getBytes());
-        String filePath  = fileRepository.save(documentDto);
+    public String saveFile(String fileName, byte[] content) throws Exception {
+        String filePath = RESOURCES_DIR+FILE_LOCATION;
+        fileRepository.save(filePath, fileName, content);
+        return FILE_LOCATION;
 
-        CityDocument doc = documentRepository.findById(documentDto.getId())
-                .orElseThrow(() -> new RuntimeException("doc not found for this id :: " + documentDto.getId()));
-        fileRepository.delete(doc.getDocPath());
-        doc.setDocPath(FILE_URL+filePath);
-        doc.setBelongsToId(documentDto.getBelongsToId());
-        doc.setDocType(documentDto.getType());
-        doc.setName(documentDto.getName());
-        documentRepository.save(doc);
     }
 
     @Override
-    public CityDocument getCityDocument(Long docId) throws Exception {
-        return this.documentRepository.findById(docId).get();
-    }
-
-    @Override
-    public InputStreamResource downloadFile(Long docId) throws Exception {
-        CityDocument doc = documentRepository.findById(docId)
-                .orElseThrow(() -> new RuntimeException("doc not found for this id :: " + docId));
-        BufferedInputStream in = new BufferedInputStream(new URL(doc.getDocPath()).openStream());
+    public InputStreamResource downloadFile(String filePath) throws Exception {
+        BufferedInputStream in = new BufferedInputStream(new URL(filePath).openStream());
         return new InputStreamResource(in);
     }
 }

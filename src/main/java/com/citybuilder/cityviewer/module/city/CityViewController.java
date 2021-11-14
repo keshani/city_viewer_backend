@@ -28,12 +28,7 @@ public class CityViewController extends BaseConroller {
     @PutMapping("/updateCityInfo")
     public ResponseEntity updateCityInfo(@RequestBody CityDto cityDto) {
         cityViewService.updateCityInfo(cityDto);
-        return ResponseEntity.ok().body("Successs");
-
-    }
-    @PutMapping("/uploadCityImages")
-    public ResponseEntity<List<City>> uploadCityImages() {
-        return ResponseEntity.ok().body(Collections.singletonList(new City(1L,"Tokiyo","Nice Country",0F,0F, "Japan" )));
+        return ResponseEntity.ok().body(null);
 
     }
 

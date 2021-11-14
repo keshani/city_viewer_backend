@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface FileSystemService {
-    public void updateCityDocument(DocumentDto documentDto)  throws Exception;
-    public CityDocument getCityDocument(Long docId)  throws Exception;
-    public InputStreamResource downloadFile(Long docId)  throws Exception;
+    public InputStreamResource downloadFile(String filePath)  throws Exception;
+    public String saveFile(String fileName, byte[] content) throws Exception ;
 }

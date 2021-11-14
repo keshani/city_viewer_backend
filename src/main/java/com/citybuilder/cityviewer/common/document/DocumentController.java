@@ -2,6 +2,7 @@ package com.citybuilder.cityviewer.common.document;
 
 import com.citybuilder.cityviewer.common.controller.BaseConroller;
 import com.citybuilder.cityviewer.common.document.models.DocumentDto;
+import com.citybuilder.cityviewer.common.document.service.DocumentService;
 import com.citybuilder.cityviewer.common.document.service.FileSystemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -20,12 +21,12 @@ import java.net.URL;
 public class DocumentController extends BaseConroller {
 
     @Autowired
-    FileSystemService fileSystem;
+    DocumentService documentService;
 
     @PostMapping("/uploadDocument")
     public void updateDocument(DocumentDto document, HttpServletRequest httpServletRequest) throws Exception {
 
-        this.fileSystem.updateCityDocument(document);
+        this.documentService.updateCityDocument(document);
 //        String url = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/500px-Skyscrapers_of_Shinjuku_2009_January.jpg";
 //        String url2 = "http://localhost:9092/city-viewer/target/classes/1636626973551-uploadFile";
 //        String url3 = "http://localhost:9092/uploadFile.txt";
@@ -38,15 +39,10 @@ public class DocumentController extends BaseConroller {
     @PostMapping("/downloadDocument")
     public ResponseEntity<Resource> downloadDocument(DocumentDto document, HttpServletRequest httpServletRequest) throws Exception {
 
-        InputStreamResource in = this.fileSystem.downloadFile(document.getId());
-//        String url = "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Skyscrapers_of_Shinjuku_2009_January.jpg/500px-Skyscrapers_of_Shinjuku_2009_January.jpg";
-//        String url2 = "http://localhost:9092/city-viewer/target/classes/1636626973551-uploadFile";
-//        String url3 = "http://localhost:9092/resources/static/1636626973551-uploadFile";
-//        BufferedInputStream in = new BufferedInputStream(new URL(url).openStream());
+        InputStreamResource in = this.documentService.downloadFile(document.getId());
         return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + "test")
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(in);
     }
-
 
 }

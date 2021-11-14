@@ -12,17 +12,10 @@ import java.util.Date;
 
 @Repository
 public class FileSystemRepository {
-
-    @Value("${app.cityImagePath}")
-    private String FILE_LOCATION;
-    private String RESOURCES_DIR =  FileSystemRepository.class.getResource("/")
-            .getPath();
-
-    public String save(DocumentDto documentDto) throws Exception {
-        String fileName = new Date().getTime() + "-" + documentDto.getName();
-        Path newFile = Paths.get( RESOURCES_DIR+ FILE_LOCATION+  fileName);
+    public String save(String filePath, String fileName, byte[] content) throws Exception {
+        Path newFile = Paths.get( filePath+  fileName);
         Files.createDirectories(newFile.getParent());
-        Files.write(newFile, documentDto.getContent());
+        Files.write(newFile, content);
         return fileName;
     }
 

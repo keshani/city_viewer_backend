@@ -19,5 +19,5 @@ spring:
   h2:
     console.enabled: true
 app:
-  cityImagePath: /static/cityImages/
+  cityImagePath: static/cityImages/
   cityImageUrl: http://localhost:9092/cityImages/
