@@ -21,3 +21,10 @@ spring:
 app:
   cityImagePath: static/cityImages/
   cityImageUrl: http://localhost:9092/cityImages/
+logging:
+  level:
+    com:
+      citybuilder:
+        cityviewer: DEBUG
+  file: cityviewer.log
+  path: /

@@ -1,13 +1,13 @@
-package com.citybuilder.cityviewer.module.city.service;
+package com.citybuilder.cityviewer.modules.city.service;
 
-import com.citybuilder.cityviewer.module.city.models.City;
-import com.citybuilder.cityviewer.module.city.models.CityDto;
+import com.citybuilder.cityviewer.modules.city.models.City;
+import com.citybuilder.cityviewer.modules.city.models.CityDto;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 public interface CityViewService {
     Page<City> getListOfCityBySearchCriteria(CityDto cityDto);
+
     Boolean updateCityInfo(CityDto cityDto);
 }

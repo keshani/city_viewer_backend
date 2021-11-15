@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
-//@RequestMapping(value = "/cityviewer/v1")
+@RequestMapping(value = "/cityviewer/v1")
 public class BaseConroller {
 }
