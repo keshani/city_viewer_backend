@@ -20,7 +20,7 @@ public interface CityViewRepository extends JpaRepository<City, Long> {
 
     @Query(value = "SELECT city"
             + " FROM City city"
-            + " WHERE :cityName = NULL OR city.cityName = :cityName ")
+            + " WHERE :cityName = NULL OR UPPER(city.cityName) LIKE (UPPER(CONCAT(:cityName, '%')))")
     Page<City> findBySearchCriteria(@Param("cityName") String cityName, Pageable pageable);
 
 }
